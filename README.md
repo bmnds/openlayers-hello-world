@@ -17,7 +17,7 @@ What to study next?
 * query a feature layer by geometry
 * render a timeline for temporal data
 
-My thoughts so far?
+# thoughts so far
 * Not interested at all into going deeper in this project
 * There is no support for popups
 * Events not firing as expected on some classes
