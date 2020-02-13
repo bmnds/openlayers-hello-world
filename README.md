@@ -1,5 +1,5 @@
 # openlayers-hello-world
-Study of OpenLayers mapping library.
+Personal project to study the OpenLayers mapping library.
 
 Requirements so far:
 * [x] build with WebPack (super easy)
