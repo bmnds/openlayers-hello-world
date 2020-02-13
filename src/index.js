@@ -17,6 +17,7 @@ import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 import LayerGroup from 'ol/layer/Group';
 import LayerSwitcher from 'ol-layerswitcher';
 import { fromLonLat } from 'ol/proj';
+import { buffer } from 'ol/extent';
 
 import ipyGpx from "./gpx/salto-do-ipy.gpx";
 import mutumGpx from "./gpx/cachoeira-do-mutum.gpx";
@@ -52,8 +53,17 @@ var ipyLayer = new VectorLayer({
     format: new GPX()
   })
 });
-ipyLayer.on('postrender', function(evt){
-  map.getView().fit(ipyLayer.getExtent())
+// First time the layer is rendered, 'addfeature' event will be called
+ipyLayer.getSource().on('addfeature', function() {
+  map.getView().fit(buffer(ipyLayer.getSource().getExtent(), 1000))
+});
+// From there on, 'propertychange' should be listened for 
+ipyLayer.on('propertychange', function(evt) {
+  if (ipyLayer.getVisible()
+      && ipyLayer.getSource().getExtent()[0] !== Infinity
+      && ipyLayer.getSource().getExtent()[0] !== -Infinity) {
+    map.getView().fit(buffer(ipyLayer.getSource().getExtent(), 1000))
+  }
 });
 
 var mutumLayer = new VectorLayer({
@@ -64,8 +74,17 @@ var mutumLayer = new VectorLayer({
     format: new GPX()
   })
 });
-mutumLayer.on('postrender', function(evt){
-  map.getView().fit(mutumLayer.getExtent())
+// First time the layer is rendered, 'addfeature' event will be called
+mutumLayer.getSource().on('addfeature', function() {
+  map.getView().fit(buffer(mutumLayer.getSource().getExtent(), 1000))
+});
+// From there on, 'propertychange' should be listened for 
+mutumLayer.on('propertychange', function(evt) {
+  if (mutumLayer.getVisible()
+      && mutumLayer.getSource().getExtent()[0] !== Infinity
+      && mutumLayer.getSource().getExtent()[0] !== -Infinity) {
+    map.getView().fit(buffer(mutumLayer.getSource().getExtent(), 1000))
+  }
 });
 
 var sussuLayer = new VectorLayer({
@@ -76,6 +95,18 @@ var sussuLayer = new VectorLayer({
     format: new GPX()
   })
 })
+// First time the layer is rendered, 'addfeature' event will be called
+sussuLayer.getSource().on('addfeature', function() {
+  map.getView().fit(buffer(sussuLayer.getSource().getExtent(), 1000))
+});
+// From there on, 'propertychange' should be listened for 
+sussuLayer.on('propertychange', function(evt) {
+  if (sussuLayer.getVisible()
+      && sussuLayer.getSource().getExtent()[0] !== Infinity
+      && sussuLayer.getSource().getExtent()[0] !== -Infinity) {
+    map.getView().fit(buffer(sussuLayer.getSource().getExtent(), 1000))
+  }
+});
 
 var map = new Map({
   layers: [
