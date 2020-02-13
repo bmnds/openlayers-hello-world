@@ -3,6 +3,7 @@ Personal project to study the OpenLayers mapping library.
 
 Requirements so far:
 * [x] build with WebPack (super easy)
+* [x] zoom to Manaus/Amazonas, Brazil on map load
 * [ ] draw a simple marker represented by an icon and show a popup when map gets loaded
 * [ ] draw a simple circle and show a popup on click
 * [ ] include measure widget
