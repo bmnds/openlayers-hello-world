@@ -26,6 +26,6 @@ My thoughts so far?
 
 # dependencies
 
-### (OpenLayers)[https://openlayers.org/]
+### [OpenLayers](https://openlayers.org/)
 
-### (OL LayerSwitcher)https://github.com/walkermatt/ol-layerswitcher]
+### [OL LayerSwitcher](https://github.com/walkermatt/ol-layerswitcher)
